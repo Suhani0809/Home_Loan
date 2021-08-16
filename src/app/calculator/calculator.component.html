@@ -1,0 +1,48 @@
+<H1>Calculator</H1>
+<p>You can calculate the loan amount you are eligible for and the EMI that will be applicable if you want to apply for loan.</p>
+<p>Below are the two calculators, Eligibility calculator and EMI calculator</p>
+<p>Enter the details as per the requirememt.</p>
+<div class="calc">
+    <table >
+        <th>Eligibility Calculator</th>
+        <tr>
+            <td><label>Monthly Income</label></td>
+            <td><input [(ngModel)]="salary" type="number"></td>
+        </tr>
+        <tr>
+            <td><label>Rate of Interest</label></td>
+            <td><input type="number" value="{{Rate}}" disabled></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" (click)="Eligibility()">Calculate</button></td>
+        </tr>
+        <tr>
+            <td><label>Amount of Loan Eligible</label></td>
+            <td><input type="number" value="{{amount}}" disabled></td>
+        </tr>
+    </table>
+</div>
+<div class="calc">
+    <table>
+        <th>EMI Calculator</th>
+        <tr>
+            <td><label>Loan Amount Required</label></td>
+            <td><input type="number" [(ngModel)]="loanAmount"></td>
+        </tr>
+        <tr>
+            <td><label>Tenure in years</label></td>
+            <td><input type="number" [(ngModel)]="years"></td>
+        </tr>
+        <tr>
+            <td><label>Rate of Interest</label></td>
+            <td><input type="number" value="{{Rate}}" disabled></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" (click)="EMI()">Calculate</button></td>
+        </tr>
+        <tr>
+            <td><label>Estimated Monthly Installment(EMI)</label></td>
+            <td><input type="number" value="{{emi}}" disabled></td>
+        </tr>
+    </table>
+</div>

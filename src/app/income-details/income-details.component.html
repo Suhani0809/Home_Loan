@@ -1,0 +1,150 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<div>
+    <div class="row mt-5" >
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Previous Income Data</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Your Previous Income Details are as followed.</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">If your previous records match your current requirement please click on select to select the corresponding record.</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">If you do not have any previous records please click on Create New.</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">If you want to register a new loan on new detail please click on Create New.</h6>
+                    <hr>
+                    <div class="row">
+                        <h2 class="col"><a class="btn btn-sm text-white btn-primary" (click)="Get_api_cid()">View Previous Records</a></h2>
+                    <h2 class="col"><a class="btn btn-sm text-white btn-primary" (click)="enablenew()">Create New Record</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div *ngIf="iflag2">
+
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+        <th>Income Id</th>
+        <th>Type of employment</th>
+        <th>Retirement Age</th>
+        <th>Type Of Organization</th>
+        <th>Name Of Organization</th>
+        <th>Organization Address</th>
+        <th>Monthly Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let i of incomes">
+        <td><span>{{i.inId}}</span></td>
+        <td><span>{{i.typeEmployment}}</span></td>
+        <td><span>{{i.retirementAge}}</span></td>
+        <td><span>{{i.organizationType}}</span></td>
+        <td><span>{{i.organizationName}}</span></td>
+        <td><span>{{i.organizationAddress}}</span></td>
+        <td><span>{{i.monthlySalary}}</span></td>
+        <td><button type="submit" class="btn btn-success"[routerLink]="['/PropertyDetails',i.cid,i.inId,i.monthlySalary]">Select</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div> 
+
+</div>
+
+<br><br>
+
+
+<div *ngIf="iflag1">
+<div class="card bg-light text-dark text-center container" >
+    <div class="card-body">
+    <h1><i class="fas fa-user-plus"></i>Register</h1>
+    </div>
+</div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
+                        <h2 class="py-3">Registration</h2>
+                        <p>Welcome User!</p>
+                        <p>Your Loan is approved on the basis of your Current Income.</p>
+                        <p>Fill out your  income details or check the earlier income details if you are already the part of our family!!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border">
+                <h4 class="pb-4">Please fill with your details</h4>
+                <form #IncomeDetailsForm="ngForm" (ngSubmit)="post_Income(IncomeDetailsForm.value)">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <select id="typeEmployment" name="typeEmployment" placeholder="Type Of Employement" class="form-control form-select" [(ngModel)]="income.typeEmployment">
+                        <option value="Salaried" selected>Salaried</option>
+                        <option value="Self-Employed">Self Employed</option>
+                        </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                        <input id="retirementAge" name="retirementAge" placeholder="Retirement Age" class="form-control" type="number" [(ngModel)]="income.retirementAge" required #retirementAge="ngModel" >
+                        <div style="color: red;" class="error" *ngIf="retirementAge.errors?.required && (retirementAge.touched&&!retirementAge.dirty)">This is a mandatory field!</div>
+                        </div>
+                        
+                    </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                            <input id="organizationType" name="organizationType" placeholder="Organization Type" class="form-control" type="text" [(ngModel)]="income.organizationType" #organizationType="ngModel" pattern="^[A-Za-z ]+$" >
+                            <div class="error" style="color: red;" *ngIf="organizationType.errors?.pattern">Organization Type includes only character values!</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                            <input id="organizationName" name="organizationName" placeholder="Organization Name" class="form-control" type="text" [(ngModel)]="income.organizationName" #organizationName="ngModel" pattern="^[A-Za-z ]+$" >
+                            <div class="error" style="color: red;" *ngIf="organizationName.errors?.pattern">Organization name includes only character values!</div>
+                            </div>
+                        </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <input id="organizationAddress" name="organizationAddress" placeholder="Organization Address" class="form-control" type="text" [(ngModel)]="income.organizationAddress" #organizationAddress="ngModel" >
+                          <div style="color: red;" class="error" *ngIf="organizationAddress.errors?.required && (organizationAddress.touched&&!organizationAddress.dirty)">This is a mandatory field!</div>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <input id="monthlySalary" name="monthlySalary" placeholder="Monthly Salary" class="form-control" type="number" [(ngModel)]="income.monthlySalary" required #monthlySalary="ngModel">
+                        <div style="color: red;" class="error" *ngIf="monthlySalary.errors?.required && (monthlySalary.touched&&!monthlySalary.dirty)">This is a mandatory field!</div>
+                            </div>
+                        </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" >
+                                <label class="form-check-label" for="invalidCheck2">
+                                    <small>By clicking Submit, you agree to our Terms & Conditions, Visitor Agreement and Privacy Policy.</small>
+                                </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                            <div class="form-group col-md-6"><button type="submit" class="btn btn-success" [disabled]="!IncomeDetailsForm.valid">Submit</button></div>
+                            <div class="form-group col-md-6"><a href="#" class="btn btn-dark">Cancel</a></div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br>

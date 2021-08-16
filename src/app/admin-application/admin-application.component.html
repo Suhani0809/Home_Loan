@@ -1,0 +1,58 @@
+<div>
+    <div class="row mt-5" >
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Users Application Details</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">View the Applications Verify the Details and Modify Status</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">If you want to Apply for new Application click on Apply for Loan</h6>
+                    <hr>
+                    <h2><a class="card-subtitle mb-2 btn btn-md text-white btn-primary" (click)=ViewDetails()>View Applications Assigned to Me!</a></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+
+<div *ngIf="iflag">
+<div class="container">
+    <span *ngFor="let a of applications">
+    <span *ngIf="application.aid==a.aid">
+    <span *ngFor="let d of documents">
+    <span *ngIf="d.cid==a.cid">
+    <span  *ngFor="let u of users">
+    <table class="table table-bordered table-striped">
+        <thead class="table-light d-print-none" *ngIf="d.cid==u.cid && tflag">
+            <tr>
+            <th>Application No</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="d.cid==u.cid">
+                <td>{{a.applicationNumber}}</td>
+                <td>{{u.firstName }} {{ u.middleName }} {{ u.lastName }}</td>
+                <td>{{ u.phoneNumber }}</td>
+                <td><button type="submit" class="offset-2 btn btn-outline-primary col-8" [routerLink]="['/Details',admin.aid,a.cid,a.inId,a.prId,a.lId,d.dId,a.applicationNumber]" >View Details</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+
+</div> 
+
+</div>
+
+
+
+<br><br><br><br>
+

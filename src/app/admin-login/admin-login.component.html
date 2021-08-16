@@ -1,0 +1,38 @@
+<div class="lcol">
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                    <h2 class="card-title text-center"><strong><i class="fas fa-user-lock"></i> Admin Login!</strong></h2>
+                    <form class="form-signin">
+                        <div class="mb-3">
+                            <label for="aemail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="aemail" name="aemail" aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apass" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="apass" name="apass" required>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                        <label class="custom-control-label" for="customCheck1"> <input type="checkbox" class="custom-control-input" id="customCheck1"> Remember password</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" id="submit" name="submit" class="form-control btn btn-primary btn-block text-uppercase" [routerLink]="['/RegisterAdmin',2500]">Sign In!</button>       
+                        </div>
+
+                        <div class="mb-3">
+                            <a type="submit" class="form-control btn btn-link" style="color: red;" id="forgotpass" name="forgotpass"><h6>forgot your Password?</h6></a>
+                            <p class="form-group text-center">or</p>
+                            <a type="submit" class="form-control btn btn-warning" id="create" name="create" routerLink="/RegisterAdmin"><h6>Dont have an Account? Sign Up!</h6></a>       
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <br><br>
+</div>

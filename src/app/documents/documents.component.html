@@ -1,0 +1,128 @@
+<br><br><br><br>
+<div class="card bg-light text-dark text-center container">
+    <div class="card-body">
+    <h1><i class="fas fa-file-upload"></i> Upload Documents</h1>
+    </div>
+</div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 py-5 bg-primary text-white text-center">
+                <div class="card-body">
+                    <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
+                    <h2 class="py-3">Upload Documents</h2>
+                    <p>Supported Documents Type Can be (pdf,jpg,jpeg,png) </p>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border">
+                <h4 class="pb-4">Please Upload Necessary Documents</h4>
+                <form #DocumentForm="ngForm" (ngSubmit)="docc_api(pancard.files,voterId.files,salarySlip.files,loa.files,noc.files,agreement.files)">
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="PancardFile" class="form-label"><h5>PAN CARD</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #pancard type="file" class="form-control" id="pancard" name="pancard" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="VoterFile" class="form-label"><h5>VOTER-ID</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #voterId type="file" class="form-control" id="voterId" name="voterId" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="SalaryFile" class="form-label"><h5>SALARY SLIP</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #salarySlip class="form-control" type="file" id="salarySlip" name="salarySlip" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="LoaFile" class="form-label"><h5>LOA</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #loa class="form-control" type="file" id="loa" name="loa" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="NocFile" class="form-label"><h5>NOC</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #noc class="form-control" type="file" id="noc" name="noc" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-lg-2">
+                            <label for="AgreementFile" class="form-label"><h5>AGREEMENT</h5></label>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <input #agreement class="form-control" type="file" id="agreement" name="agreement" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-md-6 py-3">
+                                <button type="submit" id="submit" name="submit" class="btn btn-lg btn-primary">Submit</button>
+                            </div>
+                            <div class="col-md-6 py-3">
+                                <form>
+                                    <button type="submit" id="cancel" name="cancel" class="btn btn-lg btn-danger" routerLink="/">Cancel</button>
+                                </form>
+                            </div>
+                            <div class="alert alert-info mt-2" *ngIf="msg">{{msg}}</div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<hr>
+<br><br><br><br>
+
+<hr>
+
+<!--
+
+<form #DocumentbyIDForm="ngForm" (ngSubmit)="get_apibyID(DocumentbyIDForm.value)">
+    <input type="text" id="dId" name="dId" [(ngModel)]="document.dId">
+    <input type="submit"> 
+</form>
+{{documents | json}}
+
+<h1>Test Documents API</h1>
+<div class="row">
+    <div class="col-6 offset-3">
+        <button type="button" class="btn btn-outline-primary btn-lg mt-5 ml-5" (click)="get_api()">GET</button>
+        <button type="button" class="btn btn-outline-success btn-lg mt-5 ml-5" (click)="btn_post()">POST</button>
+        <button type="button" class="btn btn-outline-dark btn-lg mt-5 ml-5" (click)="btn_put()">PUT</button>
+        <button type="button" class="btn btn-outline-warning btn-lg mt-5 ml-5" (click)="btn_delete()">DELETE</button>     
+        <button type="button" class="btn btn-outline-danger btn-lg mt-5 ml-5" (click)="error_api()">REGISTER</button>   
+    </div>
+</div>
+<h1>Display Documents Tesst Data</h1>
+<div class="row mt-5" *ngIf="flag_get">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Documents Data</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Details of all Documents.</h6>
+                <hr>
+                <div class="card-text m-2 border border-warning p-2" *ngFor="let item of documents" style="display: inline-block;">
+                    <h1>{{ item.cid }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1>Test Documents API</h1>
+-->
